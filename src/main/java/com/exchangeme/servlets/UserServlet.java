@@ -32,12 +32,18 @@ public class UserServlet extends HttpServlet {
             System.out.println(users);
             out.println(objectMapper.writeValueAsString(users));
 
-        } else {
+        } else if (splitURI.length == 3 && splitURI[2].matches("\\d+")) {
+            long userId = Long.parseLong(splitURI[2]);
+            User user = userDao.getUser(userId);
+            System.out.println(user);
+            out.println(objectMapper.writeValueAsString(user));
+        }
+        else {
             out.println(
                     "<html>\n" +
                             "<head><title>USERS</title></head>\n" +
                             "<body>\n" +
-                            "<h2 align = \"center\"><< NOT IMPLEMENTED YET >></h2>\n" +
+                            "<h2 align = \"center\"><< SOMETHING GOES WRONG >></h2>\n" +
                             "</body></html>"
             );
         }
