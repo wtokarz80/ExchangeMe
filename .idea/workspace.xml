@@ -23,12 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02279641-e283-4edb-a376-843e785d5737" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/helpers/DBFiller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/servlets/UserServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/Cart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exchangeme/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +42,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,6 +68,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -72,20 +77,62 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.JettyRun">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.exchangeme.App" />
+      <module name="exchangeMe" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.exchangeme.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JettyRun" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="jetty:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Maven.JettyRun" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,7 +143,10 @@
       <option name="presentableId" value="Default" />
       <updated>1603101642127</updated>
       <workItem from="1603101643211" duration="4493000" />
-      <workItem from="1603106498754" duration="4917000" />
+      <workItem from="1603106498754" duration="7444000" />
+      <workItem from="1603190009868" duration="11376000" />
+      <workItem from="1603264501680" duration="929000" />
+      <workItem from="1603265474846" duration="596000" />
     </task>
     <servers />
   </component>
@@ -113,11 +163,32 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2688" y="259" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1603111776952">
+    <state x="2338" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603265426422">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2688" y="259" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603111776952" />
+    <state x="2338" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603265426422" />
+    <state x="2688" y="259" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1603218304938">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2688" y="259" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603218304938" />
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1603266045538">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603266045538" />
+    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1603266045538">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603266045538" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1603266045538">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603266045538" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1603266045538">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603266045538" />
   </component>
 </project>

@@ -1,25 +1,37 @@
 package com.exchangeme.models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String userName;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
+    @Column(name = "user_items")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Item> items;
 
     public User(){
 
     }
 
-    public User(String userName, String email, String password, List<Item> items) {
+    public User(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.items = items;
     }
 
     public long getId() {

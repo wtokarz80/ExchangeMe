@@ -1,22 +1,43 @@
 package com.exchangeme.models;
 
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "items")
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userId;
+
+    @ManyToOne
+    private User user;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Category category;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Location location;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status status;
+
+    @Column(nullable = false)
     private String description;
 
     public Item(){
 
     }
 
-    public Item(long userId, String name, Category category, Location location, Status status, String description) {
-        this.userId = userId;
+    public Item(User user, String name, Category category, Location location, Status status, String description) {
+        this.user = user;
         this.name = name;
         this.category = category;
         this.location = location;
@@ -40,12 +61,12 @@ public class Item {
         this.name = name;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Category getCategory() {

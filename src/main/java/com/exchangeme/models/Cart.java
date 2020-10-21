@@ -1,18 +1,27 @@
 package com.exchangeme.models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "carts")
 public class Cart {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userId;
-    private List<Item> items;
+
+    @ManyToOne
+    private User user;
+
+    @OneToMany
+    private List<Item> reservedItems;
 
     public Cart(){};
 
-    public Cart(long userId, List<Item> items) {
-        this.userId = userId;
-        this.items = items;
+    public Cart(User user, List<Item> reservedItems) {
+        this.user = user;
+        this.reservedItems = reservedItems;
     }
 
     public long getId() {
@@ -23,19 +32,19 @@ public class Cart {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<Item> getReservedItems() {
+        return reservedItems;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setReservedItems(List<Item> reservedItems) {
+        this.reservedItems = reservedItems;
     }
 }
