@@ -44,7 +44,5 @@ public class DBFiller {
         em.clear();
         em.close();
         emf.close();
-
-
     }
 }
