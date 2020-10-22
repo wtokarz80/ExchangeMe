@@ -27,4 +27,23 @@ public class ItemDao {
         }
         return items;
     }
+
+    public Item getItem(long id) {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String query = "SELECT i FROM Item i WHERE i.id = :id";
+        TypedQuery<Item> tq = em.createQuery(query, Item.class);
+        tq.setParameter("id", id);
+        Item item = null;
+        try {
+            item = tq.getSingleResult();
+            return item;
+        }
+        catch(NoResultException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
+        return item;
+    }
 }
