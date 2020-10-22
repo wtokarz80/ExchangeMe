@@ -48,6 +48,12 @@ public class ItemDao {
         }
     }
 
+    public void removeItem(long id) {
+        Item item = getItemById(id);
+        transaction.begin();
+        em.remove(item);
+        transaction.commit();
+    }
 //
 //    public Item getItem(long id) {
 //        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
