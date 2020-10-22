@@ -5,6 +5,4 @@ public enum Status {
     AVAILABLE,
     RESERVED,
     NOT_AVAILABLE;
-
-
 }
