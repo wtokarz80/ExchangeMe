@@ -35,64 +35,82 @@ public class UserServlet extends HttpServlet {
         if(splitURI.length == 2){
             List<User> users = userDao.getAll();
             out.println(objectMapper.writeValueAsString(users));
+            response.setStatus(200);
 
         } else if (splitURI.length == 3 && splitURI[2].matches("\\d+")) {
-            getOneUser(splitURI, out);
+            getOneUser(splitURI, out, response);
         }
         else {
-            String errorMessage = "SOMETHING GOES WRONG";
-            out.println(errorMessage);
+            response.setStatus(404);
         }
-
-
-
     }
 
-    private void getOneUser(String[] splitURI, PrintWriter out) {
+    private void getOneUser(String[] splitURI, PrintWriter out, HttpServletResponse response) {
         long userId = Long.parseLong(splitURI[2]);
         Optional<User> user = userDao.getById(userId);
         user.ifPresentOrElse(
                 u -> {
                     try {
                         out.println(objectMapper.writeValueAsString(u));
+                        response.setStatus(200);
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
                 },
-                () -> out.println("There is no user with the given id")
+                () -> response.setStatus(404)
         );
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = new User();
         String queryString = request.getQueryString();
         Map<String,String> parsedQuery = parseQueryString(queryString);
         if(parsedQuery.containsKey("name")
                 && parsedQuery.containsKey("email")
                 && parsedQuery.containsKey("password"))
         {
-            user.setUserName(parsedQuery.get("name"));
-            user.setEmail(parsedQuery.get("email"));
-            user.setPassword(parsedQuery.get("password"));
+            User user = new User (parsedQuery.get("name"), parsedQuery.get("email"), parsedQuery.get("password"));
             userDao.insert(user);
         } else {
-            response.getWriter().println("SOMETHING GOES WRONG");
+            response.setStatus(422);
         }
     }
 
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] splitURI = request.getRequestURI().split("/");
+        String queryString = request.getQueryString();
+        Map<String,String> parsedQuery = parseQueryString(queryString);
+        long userId = Long.parseLong(splitURI[2]);
+        Optional<User> user = userDao.getById(userId);
+        user.ifPresentOrElse((u -> updateUser(u, parsedQuery, response)),
+                () -> response.setStatus(404)
+        );
+    }
 
+    private void updateUser(User user, Map<String, String> parsedQuery, HttpServletResponse response) {
+        if (parsedQuery.containsKey("name")) {
+            user.setUserName(parsedQuery.get("name"));
+        }
+        if (parsedQuery.containsKey("email")) {
+            user.setEmail(parsedQuery.get("email"));
+        }
+        if (parsedQuery.containsKey("password")) {
+            user.setPassword(parsedQuery.get("password"));
+        }
+        userDao.update(user);
+        response.setStatus(204);
     }
 
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] splitURI = request.getRequestURI().split("/");
         if (!(splitURI.length == 3 && splitURI[2].matches("\\d+"))) {
-            response.getWriter().println("SOMETHING GOES WRONG");
+            response.setStatus(404);
         }
         long userId = Long.parseLong(splitURI[2]);
         userDao.delete(userId);
+        response.setStatus(204);
+
     }
 
 
