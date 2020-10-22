@@ -52,4 +52,14 @@ public class CartServlet extends HttpServlet {
                 () -> response.setStatus(404)
         );
     }
+
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] splitURI = request.getRequestURI().split("/");
+        if (!(splitURI.length == 3 && splitURI[2].matches("\\d+"))) {
+            response.setStatus(404);
+        }
+        long id = Long.parseLong(splitURI[2]);
+        cartDao.delete(id);
+        response.setStatus(204);
+    }
 }
