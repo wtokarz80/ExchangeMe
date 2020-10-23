@@ -10,9 +10,9 @@ import static com.exchangeme.helpers.EntityM.ENTITY_MANAGER_FACTORY;
 
 public abstract class AbstractDao<T> implements IDao<T> {
 
-    private final EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-    private EntityTransaction transaction = em.getTransaction();
-    private Class<T> aClass;
+    protected final EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    protected EntityTransaction transaction = em.getTransaction();
+    protected Class<T> aClass;
 
     @Override
     public List<T> getAll() {
@@ -28,16 +28,25 @@ public abstract class AbstractDao<T> implements IDao<T> {
 
     @Override
     public void insert(T t) {
-
+        transaction.begin();
+        em.persist(t);
+        transaction.commit();
     }
 
     @Override
     public void update(T t) {
-
+        insert(t);
     }
 
     @Override
     public void delete(Long id) {
+        Optional<T> optional = getById(id);
+        optional.ifPresent(this::removeObject);
+    }
 
+    private void removeObject(T t) {
+        transaction.begin();
+        em.remove(t);
+        transaction.commit();
     }
 }
