@@ -4,7 +4,6 @@ import com.exchangeme.dao.CartDao;
 import com.exchangeme.models.Cart;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
