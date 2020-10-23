@@ -29,7 +29,7 @@ public class ItemServlet extends HttpServlet {
 
         } else if (splitURI.length == 3 && splitURI[2].matches("\\d+")) {
             long id = Long.parseLong(splitURI[2]);
-            Item item = itemDao.getItem(id);
+            Item item = itemDao.getItemById(id);
             System.out.println(item);
             out.println(objectMapper.writeValueAsString(item));
         }
